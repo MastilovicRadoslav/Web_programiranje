@@ -1,0 +1,124 @@
+﻿@using WebShopApplication.Models
+@using WebShopApplication.Controllers
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+<h1 class="options">Options:</h1>
+<a href="~/Customer/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Customer/ReviewOrders">Review Orders</a>
+<br />
+<a href="~/Customer/ReviewFavouriteList">Review Favourite Products</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Customer/Reviews">See Reviews</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<h1 class="title">Reviews</h1>
+
+<div>
+
+    <table>
+
+        <tr>
+
+            <td>ID</td>
+            <td>Reviewer</td>
+            <td>Product</td>
+            <td>Title</td>
+            <td>Content</td>
+            <td>Image</td>
+            <td>Options</td>
+
+        </tr>
+
+        @foreach (Review r in (List<Review>)HttpContext.Current.Application["reviews"])
+        {
+            if (r.Reviewer == ((User)Session["Login"]).Username && r.Deleted == false)
+            {
+                <tr>
+                    <td>@r.ID</td>
+                    <td>@r.Reviewer</td>
+                    <td>@r.Product</td>
+                    <td>@r.Title</td>
+                    <td>@r.Content</td>
+                    <td><img src="@SellerController.ConvertBytesToImage(r.Image)" width="150" height="150" /></td>
+                    <td>
+                        <form action="~/Customer/ModifyReview" method="post">
+                            <input type="hidden" value="@r.ID" name="IDOfReview" />
+                            <input type="submit" value="Modify" />
+                        </form>
+
+                        <form action="~/Customer/Delete" method="post">
+                            <input type="hidden" value="@r.ID" name="IDOfReview" />
+                            <input type="submit" value="Delete" />
+                        </form>
+
+
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

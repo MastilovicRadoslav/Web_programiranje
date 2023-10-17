@@ -1,0 +1,252 @@
+﻿@using WebShopApplication.Models
+@using WebShopApplication.Controllers
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+
+<h1 class="options">Options:</h1>
+@if (((User)Session["Login"]) != null && ((User)Session["Login"]).Function == WebShopApplication.Models.User.TypeOfFunction.Seller)
+{
+    <a href="~/Seller/AddProduct">Add Product</a>
+    <br />
+    <a href="~/Unlogged/ReviewProducts">Review Products</a>
+    <br />
+    <a href="~/Seller/ReviewProducts">Review My Products</a>
+    <br />
+    <a href="~/Seller/ReviewProfile">Review Profile</a>
+    <br />
+    <a href="~/Login/LogOut">Log Out</a>
+    <br />
+}
+else if (((User)Session["Login"]) != null && ((User)Session["Login"]).Function == WebShopApplication.Models.User.TypeOfFunction.Customer)
+{
+    <a href="~/Customer/ReviewProfile">Review Profile</a>
+    <br />
+    <a href="~/Customer/ReviewOrders">Review Orders</a>
+    <br />
+    <a href="~/Customer/ReviewFavouriteList">Review Favourite Products</a>
+    <br />
+    <a href="~/Unlogged/ReviewProducts">Review Products</a>
+    <br />
+    <a href="~/Customer/Reviews">See Reviews</a>
+    <br />
+    <a href="~/Login/LogOut">Log Out</a>
+    <br />
+}
+else
+{
+    <a href="~/LogIn/Register">Register</a>
+    <br />
+    <a href="~/LogIn/Login">Login</a>
+    <br />
+
+}
+<h1 class="title">ReviewProducts</h1>
+
+<div>
+
+    <table>
+
+        <tr>
+
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Amount</td>
+            <td>Description</td>
+            <td>Image</td>
+            <td>DateTime published</td>
+            <td>City</td>
+            <td>Status</td>
+            @if (TempData["customer"] != null)
+            {
+                <td>Options</td>
+            }
+
+        </tr>
+        @{ var showlist = new List<Product>();}
+        @if (TempData["Show"] != null)
+        {
+            showlist = (List<Product>)TempData["Show"];
+        }
+        else
+        {
+            showlist = ((List<Product>)HttpContext.Current.Application["products"]).Where(pr => pr.Deleted == false && pr.Status == true).ToList();
+        }
+        @foreach (Product p in showlist)
+        {
+            <tr>
+                <td>@p.ID</td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Amount</td>
+                <td>@p.Description</td>
+                <td><img src="@SellerController.ConvertBytesToImage(p.Image)" width="150" height="150" /></td>
+                <td>@p.Date_product</td>
+                <td>@p.City</td>
+                @if (p.Status == true)
+
+                {
+                    <td>In stock</td>
+                }
+                else
+                {
+                    <td>Out of stock</td>
+                }
+                @if (TempData["customer"] != null && (User)Session["Login"] != null)
+                {
+
+                    <td>
+                        @if (!((User)Session["Login"]).Favorite_products.Contains(p.ID))
+                        {
+                            <form action="~/Customer/AddToFavouriteList" method="post">
+                                <input type="hidden" value="@p.ID" name="IDOfProduct" />
+                                <input type="submit" value="Favourite" />
+                            </form>
+                        }
+                        @if (p.Status == true)
+                        {
+                            <form action="~/Customer/OrderProduct" method="post">
+                                <input type="hidden" value="@p.ID" name="IDOfProduct" />
+                                <input type="submit" value="Order" />
+                            </form>
+                        }
+
+
+                    </td>
+                }
+
+
+            </tr>
+        }
+    </table>
+</div>
+
+<div>
+    <form method="post" action="~/Unlogged/SearchMethod">
+        <table>
+
+            <tr>
+                <td>
+                    Name <input type="search" name="name" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    City <input type="search" name="city" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Price Minimun Range
+                    <input type="search" name="minimum" min="0" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Price Maximum Range
+                    <input type="search" name="maximum" min="0" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <input type="submit" value="Search" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<div>
+    <form method="post" action="~/Unlogged/SortMethod">
+        <table>
+            <tr>
+                <td>
+                    Ascending
+                    <input type="radio" checked value="ASC" name="sortype" />
+                    Descending
+                    <input type="radio" value="DSC" name="sortype" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name
+                    <input type="radio" checked value="name" name="sortproperty" />
+                    Price
+                    <input type="radio" value="price" name="sortproperty" />
+                    Date of publish
+                    <input type="radio" value="date" name="sortproperty" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Sort" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,113 @@
+﻿@using WebShopApplication.Models
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+<h1 class="options">Options:</h1>
+<a href="~/Customer/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Customer/ReviewOrders">Review Orders</a>
+<br />
+<a href="~/Customer/ReviewFavouriteList">Review Favourite Products</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Customer/Reviews">See Reviews</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<div>
+    @{
+        Review r = ((List<Review>)HttpContext.Current.Application["reviews"]).First(re => re.ID == (string)TempData["ID"]);
+    }
+    <form method="post" action="~/Customer/TryModifyReview" enctype="multipart/form-data">
+
+        <table>
+            <tr>
+                <td>
+                    <input type="hidden" name="IDOfReview" value="@TempData["ID"]" />
+                    Customer <input type="text" readonly value="@(((User)Session["Login"]).Username)" name="customer" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Title <input type="text" name="title" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Content <input type="text" name="content" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Image <input type="file" name="image" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Review" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

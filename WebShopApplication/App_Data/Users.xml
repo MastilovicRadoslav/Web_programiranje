@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <Username>rista</Username>
+    <Password>rista</Password>
+    <First_Name>Ristomir</First_Name>
+    <Last_Name>Ristic</Last_Name>
+    <Email>ristoslav@gmai.com</Email>
+    <Gender>Male</Gender>
+    <Birth>8/7/2023 12:00:00 AM</Birth>
+    <Function>Admin</Function>
+    <Order_list />
+    <Favorite_products />
+    <Published_products />
+    <Deleted>false</Deleted>
+  </User>
+  <User>
+    <Username>mitar</Username>
+    <Password>mitar</Password>
+    <First_Name>Mitar</First_Name>
+    <Last_Name>Markovic</Last_Name>
+    <Email>mitar@gmail.com</Email>
+    <Gender>Male</Gender>
+    <Birth>7/31/2023 12:00:00 AM</Birth>
+    <Function>Seller</Function>
+    <Order_list />
+    <Favorite_products />
+    <Published_products>
+      <string>Q7tpzp47hA==</string>
+      <string>7Lgn7VsxjQ==</string>
+      <string>DKLNuSsqaw==</string>
+      <string>9l5RksmylA==</string>
+    </Published_products>
+    <Deleted>false</Deleted>
+  </User>
+  <User>
+    <Username>nikola</Username>
+    <Password>nikola</Password>
+    <First_Name>Nikola</First_Name>
+    <Last_Name>Ristic</Last_Name>
+    <Email>nikola@gmail.com</Email>
+    <Gender>Male</Gender>
+    <Birth>7/30/2023 12:00:00 AM</Birth>
+    <Function>Seller</Function>
+    <Order_list />
+    <Favorite_products />
+    <Published_products>
+      <string>vRlM+PMURA==</string>
+      <string>tkDobgSgoQ==</string>
+      <string>G8iu643G0A==</string>
+      <string>47fEH11J3w==</string>
+      <string>1x5dmWevEw==</string>
+    </Published_products>
+    <Deleted>false</Deleted>
+  </User>
+  <User>
+    <Username>jovan</Username>
+    <Password>jovan</Password>
+    <First_Name>jovan</First_Name>
+    <Last_Name>Nenadovic</Last_Name>
+    <Email>jovan@gmail.com</Email>
+    <Gender>Male</Gender>
+    <Birth>7/31/2023 12:00:00 AM</Birth>
+    <Function>Customer</Function>
+    <Order_list>
+      <string>Acs6XtquaQ==</string>
+      <string>PeI63ovrng==</string>
+      <string>ks0uSdKc2w==</string>
+      <string>RXIk0CgGMA==</string>
+      <string>tiXZWq8XEg==</string>
+      <string>Jq3Cddz0XA==</string>
+    </Order_list>
+    <Favorite_products>
+      <string>7Lgn7VsxjQ==</string>
+      <string>Q7tpzp47hA==</string>
+      <string>vRlM+PMURA==</string>
+    </Favorite_products>
+    <Published_products />
+    <Deleted>true</Deleted>
+  </User>
+  <User>
+    <Username>petar</Username>
+    <Password>petar</Password>
+    <First_Name>Petar</First_Name>
+    <Last_Name>Krivokapic</Last_Name>
+    <Email>pkriva@gmail.com</Email>
+    <Gender>Male</Gender>
+    <Birth>7/5/2023 12:00:00 AM</Birth>
+    <Function>Customer</Function>
+    <Order_list>
+      <string>GfcHdLryEQ==</string>
+      <string>SwhDI26TNA==</string>
+      <string>YsYPqKejPA==</string>
+      <string>WjipyGeWdQ==</string>
+      <string>Jwoc3QHm/g==</string>
+      <string>tBouz6twYw==</string>
+    </Order_list>
+    <Favorite_products>
+      <string>vRlM+PMURA==</string>
+      <string>1x5dmWevEw==</string>
+    </Favorite_products>
+    <Published_products />
+    <Deleted>false</Deleted>
+  </User>
+  <User>
+    <Username>kupac</Username>
+    <Password>kupac</Password>
+    <First_Name>kupac</First_Name>
+    <Last_Name>kupac</Last_Name>
+    <Email>kupac@gmail.com</Email>
+    <Gender>Male</Gender>
+    <Birth>8/8/2023 12:00:00 AM</Birth>
+    <Function>Customer</Function>
+    <Order_list>
+      <string>obOUvgkDRg==</string>
+      <string>42R0mMFY5w==</string>
+    </Order_list>
+    <Favorite_products>
+      <string>Q7tpzp47hA==</string>
+      <string>7Lgn7VsxjQ==</string>
+    </Favorite_products>
+    <Deleted>false</Deleted>
+  </User>
+</ArrayOfUser>

@@ -1,0 +1,84 @@
+﻿<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+</style>
+<h1 class="title">Login</h1>
+<p class="error">@TempData["Msg"]</p>
+<hr />
+<div>
+    <form method="post" action="~/LogIn/TryLogInUser">
+        <table>
+            <tr>
+                <td>
+                    Username <input type="text" name="username" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password <input type="password" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<a href="~/LogIn/Register">Register</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">Review Products</a>
+<br />

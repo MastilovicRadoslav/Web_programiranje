@@ -1,0 +1,116 @@
+﻿<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+<h1 class="options">Options:</h1>
+<a href="~/Seller/AddProduct">Add Product</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Seller/ReviewProducts">Review My Products</a>
+<br />
+<a href="~/Seller/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<div>
+    <form method="post" action="~/Seller/TryAddProduct" enctype="multipart/form-data">
+
+        <table>
+            <tr>
+                <td>
+                    Name  <input type="text" required name="name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Price <input type="number" required name="price" min="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Amount <input type="number" required name="amount" min="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description <input type="text" required name="description" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Image <input type="file" required name="image" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    City <input type="text" required name="city" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Add" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

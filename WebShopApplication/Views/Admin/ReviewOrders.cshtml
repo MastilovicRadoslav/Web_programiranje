@@ -1,0 +1,123 @@
+﻿@using WebShopApplication.Models
+@using WebShopApplication.Controllers
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+<h1 class="options">Options:</h1>
+<a href="~/Admin/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Admin/SellersCustomers">Review Sellers/Customers</a>
+<br />
+<a href="~/Admin/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Admin/ReviewOrders">Review Orders</a>
+<br />
+<a href="~/Admin/Register">Register Seller</a>
+<br />
+<a href="~/Admin/Reviews">See Reviews</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<h1 class="title">Review Orders</h1>
+
+<div>
+
+    <table>
+
+        <tr>
+
+            <td>ID</td>
+            <td>Product</td>
+            <td>Customer</td>
+            <td>Date Of Order</td>
+            <td>Order Status</td>
+            <td>Options</td>
+
+        </tr>
+
+        @foreach (Order o in (List<Order>)HttpContext.Current.Application["orders"])
+        {
+
+            <tr>
+                <td>@o.ID</td>
+                <td>@o.Product</td>
+                <td>@o.Customer</td>
+                <td>@o.Date_of_order</td>
+                <td>@o.Order_Status.ToString()</td>
+                <td>
+                    @if (o.Order_Status == Order.Status.Active)
+                    {
+                        <form action="~/Admin/OrderFinished" method="post">
+                            <input type="hidden" value="@o.ID" name="IDOfOrder" />
+                            <input type="submit" value="Finished" />
+                        </form>
+                        <form action="~/Admin/OrderDeclined" method="post">
+                            <input type="hidden" value="@o.ID" name="IDOfOrder" />
+                            <input type="submit" value="Declined" />
+                        </form>
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>

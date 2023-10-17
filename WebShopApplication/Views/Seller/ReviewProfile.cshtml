@@ -1,0 +1,106 @@
+﻿@using WebShopApplication.Models
+@using WebShopApplication.Controllers
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+
+    .options {
+        font-size: 27px
+    }
+</style>
+
+
+<h1 class="options">Options:</h1>
+<a href="~/Seller/AddProduct">Add Product</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Seller/ReviewProducts">Review My Products</a>
+<br />
+<a href="~/Seller/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<h1 class="title">Profile</h1>
+
+
+<div>
+    <table>
+        <tr>
+            <td>Username</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Gender</td>
+            <td>Birthday</td>
+            <td>Options</td>
+        </tr>
+        <tr>
+            @{ User u = (User)Session["Login"];}
+            <td>@u.Username</td>
+            <td>@u.First_Name</td>
+            <td>@u.Last_Name</td>
+            <td>@u.Gender.ToString()</td>
+            <td>@u.Birth</td>
+            <td>
+                <form action="~/Seller/ModifyUser">
+                    <input type="submit" value="Modify" />
+                </form>
+            </td>
+        </tr>
+
+    </table>
+</div>
+

@@ -1,0 +1,207 @@
+﻿@using WebShopApplication.Models
+<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+</style>
+<h1 class="options">Options:</h1>
+<a href="~/Admin/ReviewProfile">Review Profile</a>
+<br />
+<a href="~/Admin/SellersCustomers">Review Sellers/Customers</a>
+<br />
+<a href="~/Admin/ReviewProducts">Review Products</a>
+<br />
+<a href="~/Admin/ReviewOrders">Review Orders</a>
+<br />
+<a href="~/Admin/Register">Register Seller</a>
+<br />
+<a href="~/Admin/Reviews">See Reviews</a>
+<br />
+<a href="~/Login/LogOut">Log Out</a>
+<br />
+
+<h1 class="title">Cutomers</h1>
+
+
+<div>
+    <table>
+        <tr>
+            <td>Username</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Gender</td>
+            <td>Birthday</td>
+            <td>Blocked</td>
+            <td>Options</td>
+        </tr>
+        @{ var showlist = new List<User>();}
+        @if (TempData["Show"] != null)
+        {
+            showlist = (List<User>)TempData["Show"];
+        }
+        else
+        {
+            showlist = ((List<User>)HttpContext.Current.Application["users"]).Where(usr => usr.Function == WebShopApplication.Models.User.TypeOfFunction.Seller || usr.Function == WebShopApplication.Models.User.TypeOfFunction.Customer).ToList();
+        }
+        @foreach (User u in showlist)
+        {
+            <tr>
+                <td>@u.Username</td>
+                <td>@u.First_Name</td>
+                <td>@u.Last_Name</td>
+                <td>@u.Gender.ToString()</td>
+                <td>@u.Birth</td>
+                @if (u.Deleted == true)
+                {
+                    <td>Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+
+                <td>
+                    <form action="~/Admin/ModifyUser" method="post">
+                        <input type="hidden" value="@u.Username" name="username" />
+                        <input type="submit" value="Modify" />
+                    </form>
+                    <form action="~/Admin/Block" method="post">
+                        <input type="hidden" value="@u.Username" name="username" />
+                        <input type="submit" value="Block" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div>
+    <form method="post" action="~/Admin/SearchMethodUsers">
+        <table>
+
+            <tr>
+                <td>
+                    First Name <input type="search" name="first_name" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Last Name <input type="search" name="last_name" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Birthday Minimun Range
+                    <input type="date" name="minimum" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Birthday Maximum Range
+                    <input type="date" name="maximum" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Function  <input type="search" name="function" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <input type="submit" value="Search" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<div>
+    <form method="post" action="~/Admin/SortMethodUsers">
+        <table>
+            <tr>
+                <td>
+                    Ascending
+                    <input type="radio" checked value="ASC" name="sortype" />
+                    Descending
+                    <input type="radio" value="DSC" name="sortype" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First Name
+                    <input type="radio" checked value="name" name="sortproperty" />
+                    Birthday
+                    <input type="radio" value="birthday" name="sortproperty" />
+                    Function
+                    <input type="radio" value="function" name="sortproperty" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Sort" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+

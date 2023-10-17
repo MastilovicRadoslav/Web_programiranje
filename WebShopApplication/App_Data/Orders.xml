@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <ID>WjipyGeWdQ==</ID>
+    <Product>Q7tpzp47hA==</Product>
+    <Customer>petar</Customer>
+    <Date_of_order>8/5/2023 12:00:00 AM</Date_of_order>
+    <Order_Status>Declined</Order_Status>
+    <Deleted>false</Deleted>
+  </Order>
+  <Order>
+    <ID>Jwoc3QHm/g==</ID>
+    <Product>1x5dmWevEw==</Product>
+    <Customer>petar</Customer>
+    <Date_of_order>8/16/2023 12:00:00 AM</Date_of_order>
+    <Order_Status>Active</Order_Status>
+    <Deleted>false</Deleted>
+  </Order>
+  <Order>
+    <ID>tBouz6twYw==</ID>
+    <Product>1x5dmWevEw==</Product>
+    <Customer>petar</Customer>
+    <Date_of_order>8/16/2023 12:00:00 AM</Date_of_order>
+    <Order_Status>Finished</Order_Status>
+    <Deleted>false</Deleted>
+  </Order>
+  <Order>
+    <ID>obOUvgkDRg==</ID>
+    <Product>UA7ZdXO/IQ==</Product>
+    <Customer>kupac</Customer>
+    <Date_of_order>8/31/2023 12:00:00 AM</Date_of_order>
+    <Order_Status>Finished</Order_Status>
+    <Deleted>false</Deleted>
+  </Order>
+  <Order>
+    <ID>42R0mMFY5w==</ID>
+    <Product>UA7ZdXO/IQ==</Product>
+    <Customer>kupac</Customer>
+    <Date_of_order>8/31/2023 12:00:00 AM</Date_of_order>
+    <Order_Status>Finished</Order_Status>
+    <Deleted>false</Deleted>
+  </Order>
+</ArrayOfOrder>

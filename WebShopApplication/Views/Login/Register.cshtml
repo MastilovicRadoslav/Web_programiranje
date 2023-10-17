@@ -1,0 +1,116 @@
+﻿<style>
+    body {
+        background-color: cadetblue;
+    }
+
+    div {
+        display: block;
+        font-size: 150%;
+        text-align: left;
+    }
+
+    label {
+        color: cornsilk
+    }
+
+    a {
+        font-family: fantasy;
+        font-size: 160%;
+        color: cadetblue;
+        background-color: white;
+    }
+
+    .error {
+        font-size: 150%;
+        color: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        background-color: bisque;
+        font-family: fantasy;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    td {
+        padding: 0.7rem;
+        border: 2px solid;
+        border-color: black;
+    }
+
+    input {
+        font-size: 22px;
+    }
+
+    .title {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-family: fantasy;
+    }
+</style>
+<h1 class="title">Register</h1>
+<p class="error">@TempData["Msg"]</p>
+<hr />
+
+<div>
+    <form method="post" action="~/LogIn/TryRegisterUser">
+
+        <table>
+            <tr>
+                <td>
+                    Username  <input type="text" required name="username" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password <input type="password" required name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First Name <input type="text" required name="first_name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Laste Name <input type="text" required name="last_name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email <input type="email" required name="email" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender
+                    <select style="font-size:22px" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date Of Birth <input type="date" required name="date" />
+                    <input type="hidden" name="function" value="customer" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Register Customer" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<a href="~/LogIn/Login">Login</a>
+<br />
+<a href="~/Unlogged/ReviewProducts">ReviewProducts</a>
+<br />
